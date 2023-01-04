@@ -1,0 +1,245 @@
+:root {
+	--bg-color: hsl(220, 90%, 32%);
+	--btns-color: hsl(220, 90%, 72%);
+	--teams-color: hsl(0, 0%, 85%);
+	--btn-base-size: 40px;
+	--bulb-on-color: hsl(60, 98%, 75%);
+	--bulb-off-opacity: 4%;
+	--bulb-on-opacity: 75%;
+    --anim-time-btn: 200ms;
+    --anim-time-bulb: 250ms;
+    --anim-time-indicator: 200ms;
+}
+
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+	padding-top: 2rem;
+	font-family: 'Fira Sans', sans-serif;
+	color: var(--teams-color);
+	background-color: #000;
+	background-image: url('arena.jpg');
+	background-size: cover;
+    background-position: center top;
+	user-select: none;
+}
+
+#scoreboard {
+	background-color: var(--bg-color);
+	margin: 0 auto;
+	padding: 3rem 2rem 5rem;
+	width: 60%;
+	min-width: 830px;
+	font-weight: 600;
+    box-shadow: 0px 5px 20px #000;
+}
+
+#main-container {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	gap: 2rem;;
+}
+
+#control-unit {
+	width: 120px;
+	color: var(--btns-color);
+}
+
+.sb-btn {
+	height: var(--btn-base-size);
+	border: 2px solid var(--btns-color);
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	transition: all var(--anim-time-btn) ease-in-out;
+}
+
+.sb-btn:hover {
+	cursor: pointer;
+	background-color: hsl(220, 90%, 52%);
+}
+
+.control-btn {
+	text-transform: uppercase;
+}
+
+.score-unit {
+	padding-top: 10px;
+	width: 280px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.team-name-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.lead-indicator {
+	margin: 0 1.5rem;
+	font-size: 1.7rem;
+	color: var(--bulb-on-color);
+	opacity: 0%;
+	transition: all var(--anim-time-indicator) ease-in-out;
+}
+
+.score-unit.team-leading .lead-indicator {
+	opacity: 100%;
+}
+
+.team-name {
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 2px;
+}
+
+.team-score {
+	margin-top: 8px;
+	margin-bottom: 16px;
+	width: 100%;
+	aspect-ratio: 1.8;
+	background-color: #222;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 12px;
+	padding: 22px 16px;
+}
+
+.score-digit {
+	width: 32%;
+	display: flex;
+	flex-direction: column;
+	padding: 2px;
+	overflow: clip;
+}
+
+.digit-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 14%;
+}
+
+.bulb {
+	height: 100%;
+	aspect-ratio: 1;
+	border-radius: 50vh;
+	background-color: var(--bulb-on-color);
+	opacity: var(--bulb-off-opacity);
+	transition: opacity var(--anim-time-bulb) ease-in-out;
+}
+
+.score-buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	height: var(--btn-base-size);
+	color: var(--btns-color);
+}
+
+.delta-indicator {
+	font-size: 1.5rem;
+}
+
+.delta-indicator.fa-square-minus {
+	color: var(--bg-color);
+	text-shadow: 2px 2px var(--btns-color), -2px -2px var(--btns-color), 2px -2px var(--btns-color), -2px 2px var(--btns-color);
+}
+
+.score-btn {
+	height: 100%;
+	aspect-ratio: 1;
+}
+
+/*
+    abandon hope all ye who enter here
+    there be voodoo and shenanigans afoot
+ */
+.score-digit[data-d="0"] .r0c1, .score-digit[data-d="0"] .r0c2, .score-digit[data-d="0"] .r0c3,
+.score-digit[data-d="0"] .r1c0, .score-digit[data-d="0"] .r1c4,
+.score-digit[data-d="0"] .r2c0, .score-digit[data-d="0"] .r2c4,
+.score-digit[data-d="0"] .r3c0, .score-digit[data-d="0"] .r3c4,
+.score-digit[data-d="0"] .r4c0, .score-digit[data-d="0"] .r4c4,
+.score-digit[data-d="0"] .r5c0, .score-digit[data-d="0"] .r5c4,
+.score-digit[data-d="0"] .r6c1, .score-digit[data-d="0"] .r6c2, .score-digit[data-d="0"] .r6c3,
+.score-digit[data-d="1"] .r0c2,
+.score-digit[data-d="1"] .r1c1, .score-digit[data-d="1"] .r1c2,
+.score-digit[data-d="1"] .r2c2,
+.score-digit[data-d="1"] .r3c2,
+.score-digit[data-d="1"] .r4c2,
+.score-digit[data-d="1"] .r5c2,
+.score-digit[data-d="1"] .r6c1, .score-digit[data-d="1"] .r6c2, .score-digit[data-d="1"] .r6c3,
+.score-digit[data-d="2"] .r0c1, .score-digit[data-d="2"] .r0c2, .score-digit[data-d="2"] .r0c3,
+.score-digit[data-d="2"] .r1c0, .score-digit[data-d="2"] .r1c4,
+.score-digit[data-d="2"] .r2c4,
+.score-digit[data-d="2"] .r3c1, .score-digit[data-d="2"] .r3c2, .score-digit[data-d="2"] .r3c3,
+.score-digit[data-d="2"] .r4c0,
+.score-digit[data-d="2"] .r5c0,
+.score-digit[data-d="2"] .r6c0, .score-digit[data-d="2"] .r6c1, .score-digit[data-d="2"] .r6c2, .score-digit[data-d="2"] .r6c3, .score-digit[data-d="2"] .r6c4,
+.score-digit[data-d="3"] .r0c1, .score-digit[data-d="3"] .r0c2, .score-digit[data-d="3"] .r0c3,
+.score-digit[data-d="3"] .r1c0, .score-digit[data-d="3"] .r1c4,
+.score-digit[data-d="3"] .r2c4,
+.score-digit[data-d="3"] .r3c1, .score-digit[data-d="3"] .r3c2, .score-digit[data-d="3"] .r3c3,
+.score-digit[data-d="3"] .r4c4,
+.score-digit[data-d="3"] .r5c0, .score-digit[data-d="3"] .r5c4,
+.score-digit[data-d="3"] .r6c1, .score-digit[data-d="3"] .r6c2, .score-digit[data-d="3"] .r6c3,
+.score-digit[data-d="4"] .r0c0, .score-digit[data-d="4"] .r0c4,
+.score-digit[data-d="4"] .r1c0, .score-digit[data-d="4"] .r1c4,
+.score-digit[data-d="4"] .r2c0, .score-digit[data-d="4"] .r2c4,
+.score-digit[data-d="4"] .r3c0, .score-digit[data-d="4"] .r3c1, .score-digit[data-d="4"] .r3c2, .score-digit[data-d="4"] .r3c3, .score-digit[data-d="4"] .r3c4,
+.score-digit[data-d="4"] .r4c4,
+.score-digit[data-d="4"] .r5c4,
+.score-digit[data-d="4"] .r6c4,
+.score-digit[data-d="5"] .r0c0, .score-digit[data-d="5"] .r0c1, .score-digit[data-d="5"] .r0c2, .score-digit[data-d="5"] .r0c3, .score-digit[data-d="5"] .r0c4,
+.score-digit[data-d="5"] .r1c0,
+.score-digit[data-d="5"] .r2c0,
+.score-digit[data-d="5"] .r3c0, .score-digit[data-d="5"] .r3c1, .score-digit[data-d="5"] .r3c2, .score-digit[data-d="5"] .r3c3,
+.score-digit[data-d="5"] .r4c4,
+.score-digit[data-d="5"] .r5c4,
+.score-digit[data-d="5"] .r6c0, .score-digit[data-d="5"] .r6c1, .score-digit[data-d="5"] .r6c2, .score-digit[data-d="5"] .r6c3,
+.score-digit[data-d="6"] .r0c1, .score-digit[data-d="6"] .r0c2, .score-digit[data-d="6"] .r0c3,
+.score-digit[data-d="6"] .r1c0,
+.score-digit[data-d="6"] .r2c0,
+.score-digit[data-d="6"] .r3c0, .score-digit[data-d="6"] .r3c1, .score-digit[data-d="6"] .r3c2, .score-digit[data-d="6"] .r3c3,
+.score-digit[data-d="6"] .r4c0, .score-digit[data-d="6"] .r4c4, 
+.score-digit[data-d="6"] .r5c0, .score-digit[data-d="6"] .r5c4,
+.score-digit[data-d="6"] .r6c1, .score-digit[data-d="6"] .r6c2, .score-digit[data-d="6"] .r6c3,
+.score-digit[data-d="7"] .r0c0, .score-digit[data-d="7"] .r0c1, .score-digit[data-d="7"] .r0c2, .score-digit[data-d="7"] .r0c3, .score-digit[data-d="7"] .r0c4,
+.score-digit[data-d="7"] .r1c4,
+.score-digit[data-d="7"] .r2c4,
+.score-digit[data-d="7"] .r3c3,
+.score-digit[data-d="7"] .r4c2,
+.score-digit[data-d="7"] .r5c2,
+.score-digit[data-d="7"] .r6c2,
+.score-digit[data-d="8"] .r0c1, .score-digit[data-d="8"] .r0c2, .score-digit[data-d="8"] .r0c3,
+.score-digit[data-d="8"] .r1c0, .score-digit[data-d="8"] .r1c4,
+.score-digit[data-d="8"] .r2c0, .score-digit[data-d="8"] .r2c4, .score-digit[data-d="8"] .r3c1,
+.score-digit[data-d="8"] .r3c2, .score-digit[data-d="8"] .r3c3,
+.score-digit[data-d="8"] .r4c0, .score-digit[data-d="8"] .r4c4, 
+.score-digit[data-d="8"] .r5c0, .score-digit[data-d="8"] .r5c4,
+.score-digit[data-d="8"] .r6c1, .score-digit[data-d="8"] .r6c2, .score-digit[data-d="8"] .r6c3,
+.score-digit[data-d="9"] .r0c1, .score-digit[data-d="9"] .r0c2, .score-digit[data-d="9"] .r0c3,
+.score-digit[data-d="9"] .r1c0, .score-digit[data-d="9"] .r1c4,
+.score-digit[data-d="9"] .r2c0, .score-digit[data-d="9"] .r2c4,
+.score-digit[data-d="9"] .r3c1, .score-digit[data-d="9"] .r3c2, .score-digit[data-d="9"] .r3c3, .score-digit[data-d="9"] .r3c4,
+.score-digit[data-d="9"] .r4c4,
+.score-digit[data-d="9"] .r5c4,
+.score-digit[data-d="9"] .r6c1, .score-digit[data-d="9"] .r6c2, .score-digit[data-d="9"] .r6c3
+{
+	opacity: var(--bulb-on-opacity);
+}
+
